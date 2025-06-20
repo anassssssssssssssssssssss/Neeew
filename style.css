@@ -1,0 +1,595 @@
+:root {
+
+    --primary: #6c5ce7;
+
+    --secondary: #a29bfe;
+
+    --dark: #2d3436;
+
+    --light: #f5f6fa;
+
+    --accent: #fd79a8;
+
+}
+
+body {
+
+    font-family: 'Tajawal', 'Segoe UI', sans-serif;
+
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+    color: var(--dark);
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    overflow-x: hidden;
+
+}
+
+.app {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: 2rem;
+
+}
+
+.page {
+
+    display: none;
+
+    width: 100%;
+
+    max-width: 1200px;
+
+}
+
+.page.active {
+
+    display: block;
+
+}
+
+/* بطاقة الزجاجية */
+
+.glass-card {
+
+    background: rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    padding: 3rem;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.glass-card::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: -50%;
+
+    left: -50%;
+
+    width: 200%;
+
+    height: 200%;
+
+    background: linear-gradient(
+
+        to bottom right,
+
+        rgba(255, 255, 255, 0.1),
+
+        rgba(255, 255, 255, 0)
+
+    );
+
+    transform: rotate(30deg);
+
+    z-index: -1;
+
+}
+
+.title {
+
+    color: var(--primary);
+
+    font-size: 2.5rem;
+
+    margin-bottom: 2rem;
+
+    position: relative;
+
+    display: inline-block;
+
+}
+
+.title::after {
+
+    content: '';
+
+    position: absolute;
+
+    bottom: -10px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 50px;
+
+    height: 3px;
+
+    background: var(--accent);
+
+    border-radius: 3px;
+
+}
+
+.message p {
+
+    margin-bottom: 1.5rem;
+
+    font-size: 1.1rem;
+
+    line-height: 1.8;
+
+}
+
+/* زر عصري */
+
+.modern-btn {
+
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+    color: white;
+
+    border: none;
+
+    padding: 1rem 2rem;
+
+    border-radius: 50px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.8rem;
+
+    margin-top: 2rem;
+
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.modern-btn::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255, 255, 255, 0.2),
+
+        transparent
+
+    );
+
+    transition: 0.5s;
+
+}
+
+.modern-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+
+}
+
+.modern-btn:hover::before {
+
+    left: 100%;
+
+}
+
+/* تأثير القلوب الطائعة */
+
+.floating-hearts {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+.heart {
+
+    position: absolute;
+
+    font-size: 1.5rem;
+
+    opacity: 0.6;
+
+    animation: float 6s ease-in-out infinite;
+
+}
+
+.heart:nth-child(1) {
+
+    top: 10%;
+
+    left: 20%;
+
+    animation-delay: 0s;
+
+}
+
+.heart:nth-child(2) {
+
+    top: 60%;
+
+    left: 70%;
+
+    animation-delay: 2s;
+
+}
+
+.heart:nth-child(3) {
+
+    top: 30%;
+
+    left: 50%;
+
+    animation-delay: 4s;
+
+}
+
+/* صفحة الأسباب */
+
+.reasons-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 2rem;
+
+    margin-top: 3rem;
+
+}
+
+/* بطاقات الوجه والظهر */
+
+.flip-card {
+
+    perspective: 1000px;
+
+    height: 300px;
+
+}
+
+.flip-card-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    transition: transform 0.8s;
+
+    transform-style: preserve-3d;
+
+}
+
+.flip-card:hover .flip-card-inner {
+
+    transform: rotateY(180deg);
+
+}
+
+.flip-card-front, .flip-card-back {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 2rem;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+}
+
+.flip-card-front {
+
+    background: white;
+
+    color: var(--primary);
+
+}
+
+.flip-card-front i {
+
+    font-size: 3rem;
+
+    margin-bottom: 1.5rem;
+
+    color: var(--primary);
+
+}
+
+.flip-card-front h3 {
+
+    font-size: 1.8rem;
+
+    margin-bottom: 1rem;
+
+}
+
+.flip-card-back {
+
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+    color: white;
+
+    transform: rotateY(180deg);
+
+    text-align: center;
+
+}
+
+.flip-card-back p {
+
+    margin-bottom: 1.5rem;
+
+    font-size: 1.1rem;
+
+    line-height: 1.6;
+
+}
+
+.quote {
+
+    font-style: italic;
+
+    margin-top: 1rem;
+
+    padding-top: 1rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+
+/* رسالة التهنئة */
+
+.greeting-box {
+
+    background: var(--dark);
+
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 3rem;
+
+    margin: 4rem auto 0;
+
+    max-width: 800px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.greeting-box::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: linear-gradient(
+
+        45deg,
+
+        rgba(253, 121, 168, 0.3),
+
+        rgba(108, 92, 231, 0.3)
+
+    );
+
+    z-index: -1;
+
+}
+
+.greeting-box p {
+
+    font-size: 2rem;
+
+    margin-bottom: 1.5rem;
+
+    font-weight: 600;
+
+}
+
+.love-message {
+
+    font-size: 2.5rem;
+
+    font-weight: 700;
+
+    min-height: 60px;
+
+}
+
+.typed-text {
+
+    color: var(--accent);
+
+}
+
+.cursor {
+
+    display: inline-block;
+
+    width: 3px;
+
+    height: 40px;
+
+    background: var(--accent);
+
+    animation: blink 1s infinite;
+
+}
+
+/* تأثيرات الحركة */
+
+@keyframes float {
+
+    0% { transform: translateY(0) rotate(0deg); }
+
+    50% { transform: translateY(-20px) rotate(10deg); }
+
+    100% { transform: translateY(0) rotate(0deg); }
+
+}
+
+@keyframes blink {
+
+    0%, 100% { opacity: 1; }
+
+    50% { opacity: 0; }
+
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+
+@media (max-width: 768px) {
+
+    .glass-card, .greeting-box {
+
+        padding: 2rem 1.5rem;
+
+    }
+
+    
+
+    .title {
+
+        font-size: 2rem;
+
+    }
+
+    
+
+    .reasons-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    
+
+    .greeting-box p {
+
+        font-size: 1.6rem;
+
+    }
+
+    
+
+    .love-message {
+
+        font-size: 2rem;
+
+    }
+
+}
